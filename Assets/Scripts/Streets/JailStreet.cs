@@ -1,10 +1,9 @@
 using System;
 
-public class JailStreet : Street
+public class JailStreet : Street, INotBuyStreet
 {
     private int counter;
     public event Action OnJailEnd;
-
 
     private void Start()
     {

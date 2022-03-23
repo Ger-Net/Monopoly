@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BonusStreet : Street
+public class BonusStreet : Street, INotBuyStreet
 {
    
     private void Start()

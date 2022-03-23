@@ -1,4 +1,4 @@
-public class StartStreet : Street
+public class StartStreet : Street, INotBuyStreet
 {
    
 }

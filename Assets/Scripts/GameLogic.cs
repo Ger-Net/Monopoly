@@ -1,9 +1,12 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
 {
+    public static GameLogic singleTon;
+
     public Action SecondTurn;
 
     [SerializeField] private Player[] players;
@@ -11,7 +14,7 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private DiceRoll[] dices;
 
     // UI
-    [SerializeField] private Text currentPlayerText;
+    [SerializeField] private TextMeshProUGUI currentPlayerText;
     [SerializeField] private Button endTurnButton;
     [SerializeField] private Button diceButton;
     [SerializeField] private Button rentButton;
@@ -20,6 +23,11 @@ public class GameLogic : MonoBehaviour
     private Player currentPlayer;
 
     private bool turn = true;
+
+    private void Awake()
+    {
+        singleTon = this;
+    }
 
     private void Start()
     {

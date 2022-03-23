@@ -3,7 +3,7 @@ using UnityEngine;
 
 using Random = UnityEngine.Random;
 
-public class ToJailStreet : Street
+public class ToJailStreet : Street, INotBuyStreet
 {
     private JailStreet jail;
     public event Action OnInJail;
