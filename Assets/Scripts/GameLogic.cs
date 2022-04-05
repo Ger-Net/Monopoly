@@ -1,7 +1,5 @@
 using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
 {
@@ -13,12 +11,6 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private Street[] streets;
     [SerializeField] private DiceRoll[] dices;
 
-    // UI
-    [SerializeField] private TextMeshProUGUI currentPlayerText;
-    [SerializeField] private Button endTurnButton;
-    [SerializeField] private Button diceButton;
-    [SerializeField] private Button rentButton;
-    //
     private PlayerMover playerMover;
     private Player currentPlayer;
 
@@ -40,11 +32,8 @@ public class GameLogic : MonoBehaviour
         playerMover = FindObjectOfType<PlayerMover>();
         playerMover.Moved += EndMove;
         playerMover.LapEnd += GiveLapReward;
-        playerMover.StandOnOtherPlayerStreet += RentWaiting;
-        
 
         currentPlayer = players[0];
-        currentPlayerText.text = $"Now {currentPlayer.name} move's";
     }
 
     #region Приватные методы
@@ -57,15 +46,10 @@ public class GameLogic : MonoBehaviour
         currentPlayer.IsInJail = true;
     }
     private void GiveLapReward() => currentPlayer.Money += 300;
-    private void RentWaiting()
-    {
-        endTurnButton.gameObject.SetActive(false);
-        rentButton.gameObject.SetActive(true);
-    }
+    
     private void EndMove() 
     {
         turn = false;
-        diceButton.gameObject.SetActive(false);
     }
     
     private void ChangeCurrentPlayer()
@@ -81,13 +65,10 @@ public class GameLogic : MonoBehaviour
     {
         ChangeCurrentPlayer();
         turn = true;
-        diceButton.gameObject.SetActive(true);
-        currentPlayerText.text = $"Now {currentPlayer.name} move's";
     }
     public void SecondMove()
     {
         turn = true;
-        diceButton.gameObject.SetActive(true);
         SecondTurn -= SecondMove;
     }
     public bool IsTurnOver()

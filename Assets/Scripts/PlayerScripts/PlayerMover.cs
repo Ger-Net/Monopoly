@@ -5,10 +5,6 @@ using Random = UnityEngine.Random;
 
 public class PlayerMover : MonoBehaviour
 {
-    [SerializeField] private GameLogic game;
-
-    private JailStreet jail;
-
     public event Action Moved;
     public event Action StandOnOtherPlayerStreet;
     public event Action LapEnd;
@@ -16,6 +12,10 @@ public class PlayerMover : MonoBehaviour
     public event Action<Player> BonusStreetStand;
     public event Action<Player> TaxStreetStand;
     public event Action<Player> JailStreetStand;
+
+    [SerializeField] private GameLogic game;
+
+    private JailStreet jail;
 
     public void Start()
     {
