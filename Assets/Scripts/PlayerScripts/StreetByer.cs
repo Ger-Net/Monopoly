@@ -9,14 +9,14 @@ public class StreetByer : MonoBehaviour
 
     public void BuyStreet()
     {
-        player = GameLogic.singleTon.GetCurrentPlayer();
-        street = GameLogic.singleTon.GetStreet(player.CurrentPosition);
+        player = GameLogic.instance.GetCurrentPlayer();
+        street = GameLogic.instance.GetStreet(player.CurrentPosition);
         if (!street.IsBought() && !(street is INotBuyStreet))
         {
-            player.streets.Add(street);
+            player.AddStreet(street);
             player.Money -= street.Cost;
             street.SetBoughtTrue();
-            GameLogic.singleTon.GetStreet(player.CurrentPosition).Owner = player;
+            GameLogic.instance.GetStreet(player.CurrentPosition).Owner = player;
             Debug.Log("Player " + player.name + " is owner of " + street.name + " street");
         }
         else

@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class ToJailStreet : Street, INotBuyStreet
 {
     private JailStreet jail;
-    public event Action OnInJail;
+    public event Action InJail;
 
     private void Start()
     {
@@ -17,10 +17,10 @@ public class ToJailStreet : Street, INotBuyStreet
 
     private void ToJail(Player player)
     {
-        player.CurrentPosition = jail.GetNumberOfStreet();
+        player.CurrentPosition = jail.NumberOfStreet;
         player.transform.position = new Vector2(jail.transform.position.x + Random.Range(0.1f, 0.5f),
                                                     jail.transform.position.y + Random.Range(0.1f, 0.5f));
         Debug.Log($"{player.name} now in Jail");
-        OnInJail?.Invoke();
+        InJail?.Invoke();
     }
 }

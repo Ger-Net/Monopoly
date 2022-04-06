@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
-    public static GameLogic singleTon;
+    public static GameLogic instance;
 
     public Action SecondTurn;
 
@@ -15,39 +15,34 @@ public class GameLogic : MonoBehaviour
     private Player currentPlayer;
 
     private bool turn = true;
-
     private void Awake()
     {
-        singleTon = this;
+        instance = this;
     }
 
     private void Start()
     {
         ToJailStreet toJailStreet = FindObjectOfType<ToJailStreet>();
-        toJailStreet.OnInJail += PassMove;
+        toJailStreet.InJail += ConvertJailFlag;
 
         JailStreet jail = FindObjectOfType<JailStreet>();
-        jail.OnJailEnd += StartFromJail;
+        jail.JailEnd += ConvertJailFlag;
 
         playerMover = FindObjectOfType<PlayerMover>();
-        playerMover.Moved += EndMove;
-        playerMover.LapEnd += GiveLapReward;
+        playerMover.Moved += OnMoved;
+        playerMover.LapEnd += OnLapEndReward;
 
         currentPlayer = players[0];
     }
 
     #region Ïðèâàòíûå ìåòîäû
-    private void StartFromJail()
+    private void ConvertJailFlag()
     {
-        currentPlayer.IsInJail = false;
+        currentPlayer.IsInJail = currentPlayer.IsInJail == false;
     }
-    private void PassMove()
-    {
-        currentPlayer.IsInJail = true;
-    }
-    private void GiveLapReward() => currentPlayer.Money += 300;
+    private void OnLapEndReward() => currentPlayer.Money += 300;
     
-    private void EndMove() 
+    private void OnMoved() 
     {
         turn = false;
     }
@@ -55,8 +50,8 @@ public class GameLogic : MonoBehaviour
     private void ChangeCurrentPlayer()
     {
         currentPlayer = currentPlayer == players[0] ? players[1] :
-            currentPlayer == players[1] ? players[2] :
-            currentPlayer == players[2] ? players[0] : currentPlayer;
+                        currentPlayer == players[1] ? players[2] :
+                        currentPlayer == players[2] ? players[0] : currentPlayer;
     }
     #endregion
 
@@ -69,6 +64,7 @@ public class GameLogic : MonoBehaviour
     public void SecondMove()
     {
         turn = true;
+        UIProvider.instance.SecondMove(); //ÈÑÏÐÀÂÈÒÜ
         SecondTurn -= SecondMove;
     }
     public bool IsTurnOver()
@@ -77,11 +73,11 @@ public class GameLogic : MonoBehaviour
     }
     public int SetSteps()
     {
-        int step = dices[0].GetNumberOfSteps();
+        int step1 = dices[0].GetNumberOfSteps();
         int step2 = dices[1].GetNumberOfSteps();
-        if(step == step2) SecondTurn += SecondMove;
+        if(step1 == step2) SecondTurn += SecondMove;
 
-        return step + step2;
+        return step1 + step2;
     }
     public Player GetCurrentPlayer() => currentPlayer;
     public Street GetStreet(int streetnumber) => streets[streetnumber];

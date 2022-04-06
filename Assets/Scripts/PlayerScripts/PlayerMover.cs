@@ -62,8 +62,8 @@ public class PlayerMover : MonoBehaviour
 
     private void MoveToPosition(Player player,float x, float y)
     {
-        float randomValueX = Random.Range(0.1f, 0.5f);
-        float randomValueY = Random.Range(0.1f, 0.5f);
+        float randomValueX = Random.Range(0.3f, 0.7f);
+        float randomValueY = Random.Range(0.3f, 0.7f);
         player.transform.position = new Vector2(x + randomValueX, y + randomValueY);
     }
 }

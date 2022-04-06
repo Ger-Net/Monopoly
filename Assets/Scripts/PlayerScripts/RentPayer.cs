@@ -4,8 +4,8 @@ public class RentPayer : MonoBehaviour
 {
     public void PayRent()
     {
-        Player currentPlayer = GameLogic.singleTon.GetCurrentPlayer();
-        Player owner = GameLogic.singleTon.GetStreet(currentPlayer.CurrentPosition).Owner;
+        Player currentPlayer = GameLogic.instance.GetCurrentPlayer();
+        Player owner = GameLogic.instance.GetStreet(currentPlayer.CurrentPosition).Owner;
 
         if (owner == null || currentPlayer == owner) 
         {
@@ -14,7 +14,7 @@ public class RentPayer : MonoBehaviour
         }
 
         Debug.Log(currentPlayer.name + " is pay rent to " + owner.name);
-        owner.Money += GameLogic.singleTon.GetStreet(currentPlayer.CurrentPosition).Rent;
-        currentPlayer.Money -= GameLogic.singleTon.GetStreet(currentPlayer.CurrentPosition).Rent;
+        owner.Money += GameLogic.instance.GetStreet(currentPlayer.CurrentPosition).Rent;
+        currentPlayer.Money -= GameLogic.instance.GetStreet(currentPlayer.CurrentPosition).Rent;
     }
 }

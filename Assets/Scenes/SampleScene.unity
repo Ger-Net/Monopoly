@@ -1357,7 +1357,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
-  streets: []
 --- !u!1 &210510713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,6 +1391,7 @@ MonoBehaviour:
   endTurnButton: {fileID: 262881076}
   diceButton: {fileID: 1482766290}
   rentButton: {fileID: 1658045870}
+  buyButton: {fileID: 1822391742}
 --- !u!4 &210510715
 Transform:
   m_ObjectHideFlags: 0
@@ -1738,8 +1738,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
-  m_SizeDelta: {x: 194.5, y: 30}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 415.9523, y: 76.2023}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &262881076
 MonoBehaviour:
@@ -3659,7 +3659,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
-  streets: []
 --- !u!1 &782613084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4925,7 +4924,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
-  streets: []
 --- !u!1 &1054859041
 GameObject:
   m_ObjectHideFlags: 0
@@ -6595,8 +6593,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.94687414}
   m_AnchorMax: {x: 1, y: 0.94687414}
-  m_AnchoredPosition: {x: -97.25, y: -11.5}
-  m_SizeDelta: {x: 194.5, y: 30}
+  m_AnchoredPosition: {x: -207.98, y: -63.306}
+  m_SizeDelta: {x: 415.95, y: 88.9478}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1482766290
 MonoBehaviour:
@@ -6642,6 +6640,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 210510714}
+        m_TargetAssemblyTypeName: UIProvider, Assembly-CSharp
+        m_MethodName: EndMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1069398344}
         m_TargetAssemblyTypeName: DiceRoll, Assembly-CSharp
         m_MethodName: Roll
@@ -6670,18 +6680,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerMover, Assembly-CSharp
         m_MethodName: PlayerMove
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1482766288}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7695,7 +7693,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '
 
-'
+    0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7898,7 +7896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 467.5, y: -88}
+  m_AnchoredPosition: {x: 222.5, y: -85}
   m_SizeDelta: {x: 195, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1658045870
@@ -8288,10 +8286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -8454,8 +8452,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.9012993}
   m_AnchorMax: {x: 1, y: 0.9012993}
-  m_AnchoredPosition: {x: -97.25, y: -12.5}
-  m_SizeDelta: {x: 194.5, y: 30}
+  m_AnchoredPosition: {x: -207.98, y: -101.44}
+  m_SizeDelta: {x: 415.95, y: 85.7614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1822391742
 MonoBehaviour:

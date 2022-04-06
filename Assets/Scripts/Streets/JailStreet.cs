@@ -3,12 +3,12 @@ using System;
 public class JailStreet : Street, INotBuyStreet
 {
     private int counter;
-    public event Action OnJailEnd;
+    public event Action JailEnd;
 
     private void Start()
     {
         ToJailStreet toJailStreet = FindObjectOfType<ToJailStreet>();
-        toJailStreet.OnInJail += StartPassing;
+        toJailStreet.InJail += StartPassing;
     }
 
     private void StartPassing() => counter = 0;
@@ -18,7 +18,7 @@ public class JailStreet : Street, INotBuyStreet
         if (counter == 2)
         {
             counter = 0;
-            OnJailEnd?.Invoke();
+            JailEnd?.Invoke();
         }
         counter++;
     }

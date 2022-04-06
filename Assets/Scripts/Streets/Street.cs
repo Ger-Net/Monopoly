@@ -10,14 +10,10 @@ public class Street : MonoBehaviour
     private Player owner;
     private bool bought = false;
 
+    public int NumberOfStreet => streetNumber;
     public int Rent => rent; 
     public int Cost => cost;
     public Player Owner { get => owner; set => owner = value; }
-
-    public int GetNumberOfStreet()
-    {
-        return streetNumber;
-    }
 
     public bool IsBought()
     {

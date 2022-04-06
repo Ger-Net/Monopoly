@@ -6,29 +6,39 @@ using UnityEngine.UI;
 
 public class UIProvider : MonoBehaviour
 {
+    public static UIProvider instance;
+
     [SerializeField] private TextMeshProUGUI currentPlayer;
     [SerializeField] private TextMeshProUGUI currentPlayerMoney;
     [SerializeField] private Button endTurnButton;
     [SerializeField] private Button diceButton;
     [SerializeField] private Button rentButton;
+    [SerializeField] private Button buyButton;
 
     private void Awake()
     {
-        PlayerMover playerMover = FindObjectOfType<PlayerMover>();
-
-        playerMover.StandOnOtherPlayerStreet += RentWaiting;
-
-        GameLogic.singleTon.SecondTurn += SecondMove;
-
-        currentPlayerMoney.text = $"Money {GameLogic.singleTon.GetCurrentPlayer().Money}";
-        currentPlayer.text = $"Now {GameLogic.singleTon.GetCurrentPlayer().name} move's";
+        instance = this;
     }
 
+    private void Start()
+    {
+        PlayerMover playerMover = FindObjectOfType<PlayerMover>();
+        playerMover.StandOnOtherPlayerStreet += RentWaiting;
+        buyButton.onClick.AddListener(PlayerTextChange);
+        rentButton.onClick.AddListener(PlayerTextChange);
+
+        PlayerTextChange();
+    }
     public void StartMove()
     {
         diceButton.gameObject.SetActive(true);
-        currentPlayerMoney.text = $"Money {GameLogic.singleTon.GetCurrentPlayer().Money}";
-        currentPlayer.text = $"Now {GameLogic.singleTon.GetCurrentPlayer().name} move's";
+        PlayerTextChange();
+    }
+
+    private void PlayerTextChange()
+    {
+        currentPlayerMoney.text = $"Money {GameLogic.instance.GetCurrentPlayer().Money}";
+        currentPlayer.text = $"Now {GameLogic.instance.GetCurrentPlayer().name} move's";
     }
 
     public void EndMove()
