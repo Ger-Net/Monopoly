@@ -2,24 +2,16 @@ using System;
 
 public class JailStreet : Street, INotBuyStreet
 {
-    private int counter;
     public event Action JailEnd;
 
-    private void Start()
+    public void Pass(Player player)
     {
-        ToJailStreet toJailStreet = FindObjectOfType<ToJailStreet>();
-        toJailStreet.InJail += StartPassing;
-    }
-
-    private void StartPassing() => counter = 0;
-
-    public void Pass()
-    {
-        if (counter == 2)
+        if (player.inJailCounter == 2)
         {
-            counter = 0;
+            player.inJailCounter = 0;
             JailEnd?.Invoke();
+            return;
         }
-        counter++;
+        player.inJailCounter++;
     }
 }

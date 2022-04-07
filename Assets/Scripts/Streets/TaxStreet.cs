@@ -9,9 +9,9 @@ public class TaxStreet : Street, INotBuyStreet
     }
     public void PayTax(Player player)
     {
-        if (player.IsStreetListEmpty()) return;
+        if (player.streets == null) return;
 
-        player.Money -= 100 * player.GetStreetListCount();
+        player.Money -= 10 * player.streets.Count;
 
         Debug.Log("TAXTAX");
     }

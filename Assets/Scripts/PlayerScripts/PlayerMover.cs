@@ -8,6 +8,7 @@ public class PlayerMover : MonoBehaviour
     public event Action Moved;
     public event Action StandOnOtherPlayerStreet;
     public event Action LapEnd;
+    public event Action SecondTurn;
 
     public event Action<Player> BonusStreetStand;
     public event Action<Player> TaxStreetStand;
@@ -29,8 +30,8 @@ public class PlayerMover : MonoBehaviour
         Player player = game.GetCurrentPlayer();
         if (player.IsInJail) 
         {
-            jail.Pass();
-            Debug.Log($"Player {player.name} is in jail");
+            jail.Pass(player);
+            Debug.Log($"Player {player.name} is in jail. Turn {player.inJailCounter}");
             return;
         }
         int streetnumber = player.CurrentPosition;
@@ -53,11 +54,11 @@ public class PlayerMover : MonoBehaviour
 
         // Активация событий
         Moved?.Invoke();
-        game.SecondTurn?.Invoke();
         if (owner != null && player != owner) StandOnOtherPlayerStreet?.Invoke();
         if (game.GetStreet(newStreetNumber) is TaxStreet) TaxStreetStand?.Invoke(player);
         if (game.GetStreet(newStreetNumber) is BonusStreet) BonusStreetStand?.Invoke(player);
         if (game.GetStreet(newStreetNumber) is ToJailStreet) JailStreetStand?.Invoke(player);
+        SecondTurn?.Invoke();
     }
 
     private void MoveToPosition(Player player,float x, float y)

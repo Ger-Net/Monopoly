@@ -5,8 +5,6 @@ public class GameLogic : MonoBehaviour
 {
     public static GameLogic instance;
 
-    public Action SecondTurn;
-
     [SerializeField] private Player[] players;
     [SerializeField] private Street[] streets;
     [SerializeField] private DiceRoll[] dices;
@@ -65,7 +63,7 @@ public class GameLogic : MonoBehaviour
     {
         turn = true;
         UIProvider.instance.SecondMove(); //»—œ–¿¬»“‹
-        SecondTurn -= SecondMove;
+        playerMover.SecondTurn -= SecondMove;
     }
     public bool IsTurnOver()
     {
@@ -75,7 +73,7 @@ public class GameLogic : MonoBehaviour
     {
         int step1 = dices[0].GetNumberOfSteps();
         int step2 = dices[1].GetNumberOfSteps();
-        if(step1 == step2) SecondTurn += SecondMove;
+        if(step1 == step2) playerMover.SecondTurn += SecondMove;
 
         return step1 + step2;
     }

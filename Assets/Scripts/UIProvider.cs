@@ -24,8 +24,12 @@ public class UIProvider : MonoBehaviour
     {
         PlayerMover playerMover = FindObjectOfType<PlayerMover>();
         playerMover.StandOnOtherPlayerStreet += RentWaiting;
-        buyButton.onClick.AddListener(PlayerTextChange);
-        rentButton.onClick.AddListener(PlayerTextChange);
+        Player[] players = FindObjectsOfType<Player>();
+
+        foreach (var player in players)
+        {
+            player.MoneyChanged += PlayerTextChange;
+        }
 
         PlayerTextChange();
     }
@@ -37,7 +41,7 @@ public class UIProvider : MonoBehaviour
 
     private void PlayerTextChange()
     {
-        currentPlayerMoney.text = $"Money {GameLogic.instance.GetCurrentPlayer().Money}";
+        currentPlayerMoney.text = $"Gold {GameLogic.instance.GetCurrentPlayer().Money}";
         currentPlayer.text = $"Now {GameLogic.instance.GetCurrentPlayer().name} move's";
     }
 

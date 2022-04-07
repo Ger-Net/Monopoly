@@ -24,13 +24,11 @@ public class BonusStreet : Street, INotBuyStreet
     } 
     private void GiveMoney(Player player)
     {
-        player.Money += 150;
-        Debug.Log("Money");
+        player.Money += Random.Range(15, 30);
     }
     private void TakeMoney(Player player)
     {
-        player.Money -= 100;
-        Debug.Log("Tax");
+        player.Money -= Random.Range(10,20);
     }
 
 }
