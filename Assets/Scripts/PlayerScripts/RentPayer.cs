@@ -1,11 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RentPayer : MonoBehaviour
 {
-    public void PayRent()
+    private void Start()
     {
+        StreetComplectProvider complectProvider = FindObjectOfType<StreetComplectProvider>();
+        complectProvider.ComplectDoned += ComplectBonusRent;
+    }
+    public void PayRent()
+    {   
         Player currentPlayer = GameLogic.instance.GetCurrentPlayer();
-        Player owner = GameLogic.instance.GetStreet(currentPlayer.CurrentPosition).Owner;
+        Street street = GameLogic.instance.GetStreet(currentPlayer.CurrentPosition);
+        Player owner = street.Owner;
 
         if (owner == null || currentPlayer == owner) 
         {
@@ -14,7 +21,15 @@ public class RentPayer : MonoBehaviour
         }
 
         Debug.Log(currentPlayer.name + " is pay rent to " + owner.name);
-        owner.Money += GameLogic.instance.GetStreet(currentPlayer.CurrentPosition).Rent;
-        currentPlayer.Money -= GameLogic.instance.GetStreet(currentPlayer.CurrentPosition).Rent;
+        owner.Money += street.Cost/2;
+        currentPlayer.Money -= street.Cost/2;
+    }
+
+    private void ComplectBonusRent(IEnumerable<Street> streets)
+    {
+        foreach (var street in streets)
+        {
+            street.Cost *= 2;
+        }
     }
 }

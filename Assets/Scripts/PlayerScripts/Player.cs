@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
+{   public event Action MoneyChanged;
+
     [SerializeField] private int money;
 
     public int inJailCounter;
-
-    public event Action MoneyChanged;
 
     public List<Street> streets;
 

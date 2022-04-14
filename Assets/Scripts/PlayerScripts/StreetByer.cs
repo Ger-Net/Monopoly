@@ -7,6 +7,7 @@ public class StreetByer : MonoBehaviour
     private Player player;
     private Street street;
 
+    [SerializeField] private StreetComplectProvider streetComplect;
     public void BuyStreet()
     {
         player = GameLogic.instance.GetCurrentPlayer();
@@ -15,6 +16,7 @@ public class StreetByer : MonoBehaviour
         {
             player.streets.Add(street);
             player.Money -= street.Cost;
+            streetComplect.CheckComplectDoned(player.streets,street.Type);
             street.SetBoughtTrue();
             street.Owner = player;
             Debug.Log("Player " + player.name + " is owner of " + street.name + " street");
