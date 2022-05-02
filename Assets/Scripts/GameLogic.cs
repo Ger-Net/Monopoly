@@ -1,11 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
     public static GameLogic instance;
 
-    [SerializeField] private Player[] players;
+    [SerializeField] private List<Player> players;
     [SerializeField] private Street[] streets;
     [SerializeField] private DiceRoll[] dices;
 
@@ -16,6 +18,7 @@ public class GameLogic : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        players = FindObjectsOfType<Player>().ToList();
     }
 
     private void Start()
