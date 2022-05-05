@@ -36,7 +36,7 @@ public class GameLogic : MonoBehaviour
         currentPlayer = players[0];
     }
 
-    #region Приватные методы
+    #region Private methods
     private void ConvertJailFlag()
     {
         currentPlayer.IsInJail = currentPlayer.IsInJail == false;
@@ -56,7 +56,7 @@ public class GameLogic : MonoBehaviour
     }
     #endregion
 
-    #region Публичные методы
+    #region Public methods
     public void StartMove()
     {
         ChangeCurrentPlayer();
@@ -65,7 +65,7 @@ public class GameLogic : MonoBehaviour
     public void SecondMove()
     {
         turn = true;
-        UIProvider.instance.SecondMove(); //ИСПРАВИТЬ
+        UIProvider.instance.SecondMove(); //TO FIX
         playerMover.SecondTurn -= SecondMove;
     }
     public bool IsTurnOver()
