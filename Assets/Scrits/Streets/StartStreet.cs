@@ -10,7 +10,7 @@ namespace Assets.Scrits.Streets
         protected override void InitBehaviours()
         {
             _bought = new DontBoughtBehaviour();
-            _acting = new StartActBehaviour();
+            _acting = new DontActBehaviour();
             _passing = new StartPassBehaviour(_moneyGive);
         }
     }

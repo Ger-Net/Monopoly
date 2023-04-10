@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Assets.Scrits.Behaviours
 {
-    public class StartActBehaviour : IActing
+    public class DontActBehaviour : IActing
     {
         public void Act(Player player)
         {
             //TODO NOTHING
-            //ALL ACTING IN PASS BEHAVIOUR
         }
     }
 }

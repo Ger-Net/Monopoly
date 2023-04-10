@@ -1,26 +1,26 @@
+using Assets.Scrits.Streets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //serializable only for debug
+    [SerializeField] private List<SimpleStreet> _streets = new List<SimpleStreet>();
 
-    [SerializeField] private int _baseMoney = 1500;
-
-    private int _money;
-    private void Awake()
-    {
-        Init();
-    }
-    private void Init()
-    {
-        _money = _baseMoney;
-    }
+    [SerializeField] private int _money;
+    
+    //serializable only for debug
+    [SerializeField] private int _currentStreetIndex;
+    
+    public int Money => _money;
 
     public void AddMoney(uint money)
     {
         _money += (int)money;
     }
+
     public void RemoveMoney(int money) 
     {  
         if(money < 0)
@@ -28,5 +28,23 @@ public class Player : MonoBehaviour
             money = -money;
         }
         _money -= money;
+    }
+
+    /// <summary>
+    ///     When using this method don't use RemoveMoney
+    /// </summary>
+    /// <param name="street"></param>
+    public void AddStreet(SimpleStreet street)
+    {
+        RemoveMoney(street.Cost);
+        _streets.Add(street);
+    }
+    public void RemoveStreet(SimpleStreet street)
+    {
+        _streets.Remove(street);
+    }
+    public void Move(int streetIndex)
+    {
+
     }
 }

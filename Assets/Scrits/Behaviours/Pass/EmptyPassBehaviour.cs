@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scrits.Behaviours
+namespace Assets.Scrits.Behaviours.Pass
 {
-    public class DontBoughtBehaviour : IBought
+    public class EmptyPassBehaviour : IPass
     {
-        public bool TryBuy(Player player)
+        public void Pass(Player player)
         {
-            return false;
+            //TODO NOTHING
         }
     }
 }
