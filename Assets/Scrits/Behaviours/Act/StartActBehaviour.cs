@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace Assets.Scrits.Behaviours
 {
-    public class BonusActBehaviour : IActing
+    public class StartActBehaviour : IActing
     {
         public void Act(Player player)
         {
-            throw new NotImplementedException();
-        }
-        private void AddRandomBonus(Player player)
-        {
-
+            //TODO NOTHING
+            //ALL ACTING IN PASS BEHAVIOUR
         }
     }
 }

@@ -17,12 +17,16 @@ public class Player : MonoBehaviour
         _money = _baseMoney;
     }
 
-    public void AddMoney(int money)
+    public void AddMoney(uint money)
     {
-        _money += money;
+        _money += (int)money;
     }
     public void RemoveMoney(int money) 
     {  
+        if(money < 0)
+        {
+            money = -money;
+        }
         _money -= money;
     }
 }
