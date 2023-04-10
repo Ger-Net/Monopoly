@@ -1,5 +1,4 @@
 ﻿using Assets.Scrits.Behaviours;
-using System;
 using UnityEngine;
 
 namespace Assets.Scrits.Streets

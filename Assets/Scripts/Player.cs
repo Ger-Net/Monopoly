@@ -1,11 +1,12 @@
 using Assets.Scrits.Streets;
-using System;
-using System.Collections;
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private float _moveDuration;
+
     //serializable only for debug
     [SerializeField] private List<SimpleStreet> _streets = new List<SimpleStreet>();
 
@@ -36,15 +37,15 @@ public class Player : MonoBehaviour
     /// <param name="street"></param>
     public void AddStreet(SimpleStreet street)
     {
-        RemoveMoney(street.Cost);
+        RemoveMoney((int)street.Cost);
         _streets.Add(street);
     }
     public void RemoveStreet(SimpleStreet street)
     {
         _streets.Remove(street);
     }
-    public void Move(int streetIndex)
+    public void Move(Street street)
     {
-
+        
     }
 }

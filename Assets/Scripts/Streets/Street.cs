@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Street : MonoBehaviour
 {
-    [SerializeField] protected int _cost = 50;
     [SerializeField] private int _index;
 
     protected IBought _bought;
@@ -12,7 +9,7 @@ public abstract class Street : MonoBehaviour
     protected IPass _passing;
     protected abstract void InitBehaviours();
 
-    public int Cost => _cost;
+    
     private void Awake()
     {
         InitBehaviours();
