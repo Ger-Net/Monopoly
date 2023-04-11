@@ -7,6 +7,9 @@ public abstract class Street : MonoBehaviour
     protected IBought _bought;
     protected IActing _acting;
     protected IPass _passing;
+
+    public int Index => _index; 
+
     protected abstract void InitBehaviours();
 
     

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _moveDuration;
 
     //serializable only for debug
     [SerializeField] private List<SimpleStreet> _streets = new List<SimpleStreet>();
@@ -16,6 +15,11 @@ public class Player : MonoBehaviour
     [SerializeField] private int _currentStreetIndex;
     
     public int Money => _money;
+    public int CurrentStreetIndex
+    {
+        get => _currentStreetIndex;
+        set => _currentStreetIndex = value;
+    }
 
     public void AddMoney(uint money)
     {
@@ -44,8 +48,8 @@ public class Player : MonoBehaviour
     {
         _streets.Remove(street);
     }
-    public void Move(Street street)
-    {
-        
-    }
+}
+public enum PlayerColor
+{
+    Black, Green, Blue, Red
 }
