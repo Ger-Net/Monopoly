@@ -1,3 +1,5 @@
+using Assets.Scripts.Singleton;
+using Assets.Scripts.UI.Controllers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +17,8 @@ public class MainGame : MonoBehaviour
     private bool _isMoving = false;
     private void Awake()
     {
-        _playerMovement.OnMoveEnded += EndMove;
+        //_playerMovement.OnMoveEnded += EndMove;
+        Singleton<EndTurnController>.Instance.OnClick += EndMove;
     }
     public void StartTurn()
     {

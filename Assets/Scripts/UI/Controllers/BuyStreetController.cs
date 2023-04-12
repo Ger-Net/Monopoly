@@ -6,9 +6,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI.Controllers
 {
-    public class BuyStreetController : MonoBehaviour
+    public class BuyStreetController : BaseController
     {
-        public event Action OnClick;
         [SerializeField] private BuyStreetView _view;
 
         private void Awake()
@@ -24,19 +23,17 @@ namespace Assets.Scripts.UI.Controllers
 
         public void Buy()
         {
-            OnClick?.Invoke();
+            Invoke();
+            ClearEvent();
             _view.BuyButton.onClick.RemoveAllListeners();
-            OnClick = null;
+            
         }
         public void Cancel()
         {
             _view.BuyButton.onClick.RemoveAllListeners();
-            OnClick = null;
+            ClearEvent();
             _view.Close();
         }
-        public void AddListener(Action action)
-        {
-            OnClick += action;
-        }
+        
     }
 }
