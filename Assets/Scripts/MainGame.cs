@@ -12,10 +12,16 @@ public class MainGame : MonoBehaviour
 
     private Player _currentPlayer;
     private int _currentPlayerIndex = -1;
-
-
+    private bool _isMoving = false;
+    private void Awake()
+    {
+        _playerMovement.OnMoveEnded += EndMove;
+    }
     public void StartTurn()
     {
+        if (_isMoving)
+            return;
+        _isMoving = true;
         _currentPlayerIndex++;
         _currentPlayer = _players[_currentPlayerIndex % _playerCount];
         int diceNumber = _diceController.Roll();
@@ -25,6 +31,8 @@ public class MainGame : MonoBehaviour
 
         _playerMovement.Move(streetsToMove, _currentPlayer);
     }
+
+    public void EndMove() => _isMoving = false;
 
     private List<Street> AddStreets(int nextStreetIndex)
     {
