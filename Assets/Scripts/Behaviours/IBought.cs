@@ -1,4 +1,4 @@
 public interface IBought 
 {
-    bool TryBuy(Player player);
+    void Buy(Player player);
 }

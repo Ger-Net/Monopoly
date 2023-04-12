@@ -1,4 +1,6 @@
-﻿using Assets.Scrits.Streets;
+﻿using Assets.Scripts;
+using Assets.Scripts.Singleton;
+using Assets.Scrits.Streets;
 
 namespace Assets.Scrits.Behaviours.Buy
 {
@@ -9,13 +11,14 @@ namespace Assets.Scrits.Behaviours.Buy
         {
             _street = street;
         }
-        public bool TryBuy(Player player)
+        public void Buy(Player player)
         {
             if (_street.Owner != null || player.Money < _street.Cost)
-                return false;
-            player.AddStreet(_street);
-            _street.AddOwner(player);
-            return true;
+                return;
+            Singleton<BuyStreetView>.Instance.OpenPanel();
+            //player.AddStreet(_street);
+            //_street.AddOwner(player);
+            
                 
         }
     }

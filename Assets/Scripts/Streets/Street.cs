@@ -17,9 +17,9 @@ public abstract class Street : MonoBehaviour
     {
         InitBehaviours();
     }
-    public bool Buy(Player player)
+    public void Buy(Player player)
     {
-        return _bought.TryBuy(player);
+        _bought.Buy(player);
     }
     public void Act(Player player)
     {
