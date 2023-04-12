@@ -3,9 +3,9 @@ namespace Assets.Scrits.Behaviours
 {
     public class DontBoughtBehaviour : IBought
     {
-        public bool TryBuy(Player player)
+        public void Buy(Player player)
         {
-            return false;
+            
         }
     }
 }

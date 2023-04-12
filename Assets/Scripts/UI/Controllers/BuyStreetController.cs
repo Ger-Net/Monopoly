@@ -26,7 +26,7 @@ namespace Assets.Scripts.UI.Controllers
             Invoke();
             ClearEvent();
             _view.BuyButton.onClick.RemoveAllListeners();
-            
+            _view.Close();
         }
         public void Cancel()
         {

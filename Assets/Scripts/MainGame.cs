@@ -18,7 +18,7 @@ public class MainGame : MonoBehaviour
     private void Awake()
     {
         //_playerMovement.OnMoveEnded += EndMove;
-        Singleton<EndTurnController>.Instance.OnClick += EndMove;
+        Singleton<EndTurnController>.Instance.OnClick += EndMove; 
     }
     public void StartTurn()
     {

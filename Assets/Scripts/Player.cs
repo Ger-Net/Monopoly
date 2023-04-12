@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     //serializable only for debug
     [SerializeField] private List<SimpleStreet> _streets = new List<SimpleStreet>();
 

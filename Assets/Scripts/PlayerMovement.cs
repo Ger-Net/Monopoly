@@ -17,8 +17,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator AnimateMove(List<Street> streets,Player player)
     {
-        foreach (Street street in streets)
+        for (int i = 1; i < streets.Count; i++)
         {
+            Street street = streets[i];
             street.Pass(player);
             _isMoving = true;
             player.transform.DOMove(street.transform.position, _moveDuration)
