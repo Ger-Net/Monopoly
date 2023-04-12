@@ -3,13 +3,13 @@ using UnityEngine;
 public abstract class Street : MonoBehaviour
 {
     [SerializeField] private int _index;
-
+    [SerializeField] private string _name;
     protected IBought _bought;
     protected IActing _acting;
     protected IPass _passing;
 
     public int Index => _index; 
-
+    public string Name => _name;
     protected abstract void InitBehaviours();
 
     
