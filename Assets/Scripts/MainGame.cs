@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class MainGame : MonoBehaviour
 {
+    [Header("Debug")]
+    [SerializeField] private int _debugStreetIndex; 
+
     [SerializeField] private int _playerCount = 4;
     [SerializeField] private Player[] _players;
     [SerializeField] private Street[] _streets;
@@ -35,6 +38,19 @@ public class MainGame : MonoBehaviour
         _playerMovement.Move(streetsToMove, _currentPlayer);
     }
 
+    #region Debug
+    public void StartTurnDebug()
+    {
+        if (_isMoving)
+            return;
+        _isMoving = true;
+        _currentPlayerIndex++;
+        _currentPlayer = _players[_currentPlayerIndex % _playerCount];
+
+        _playerMovement.DebugMove(_streets[_debugStreetIndex], _currentPlayer);
+    }
+    #endregion
+   
     public void EndMove() => _isMoving = false;
 
     private List<Street> AddStreets(int nextStreetIndex)

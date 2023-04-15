@@ -11,6 +11,14 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float _moveDuration = 0.3f;
     private bool _isMoving;
+    public void DebugMove(Street street, Player player)
+    {
+        player.transform.DOMove(street.transform.position, 0);
+        player.CurrentStreetIndex = street.Index;
+        street.Act(player);
+        street.Buy(player);
+        OnMoveEnded?.Invoke();
+    }
     public void Move(List<Street> streets, Player player)
     {
         StartCoroutine(AnimateMove(streets,player));
