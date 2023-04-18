@@ -17,23 +17,40 @@ public class MainGame : MonoBehaviour
 
     private Player _currentPlayer;
     private int _currentPlayerIndex = -1;
+    private int _currentPlayerMoveIndex;
+    private bool _canMove = true;
     private bool _isMoving = false;
     private void Awake()
     {
         //_playerMovement.OnMoveEnded += EndMove;
+        NextPlayer();
         Singleton<EndTurnController>.Instance.OnClick += EndMove; 
     }
     public void StartTurn()
     {
-        if (_isMoving)
+        if (_isMoving && !_canMove)
+        {
+            Debug.LogAssertion("Can't move");
             return;
+        }
+
+        if (_currentPlayer.Blocked)
+        {
+            _currentPlayer.Block();
+            EndMove();
+            return;
+        }
+
         _isMoving = true;
-        _currentPlayerIndex++;
-        _currentPlayer = _players[_currentPlayerIndex % _playerCount];
+
         int diceNumber = _diceController.Roll();
+        _canMove = _diceController.HasDouble();
+
+        _currentPlayerMoveIndex++;
+
         int nextStreetIndex = (_currentPlayer.CurrentStreetIndex + diceNumber) % _streets.Length;
 
-        List<Street> streetsToMove = AddStreets(nextStreetIndex);
+        List<Street> streetsToMove = GetStreetsToMove(nextStreetIndex);
 
         _playerMovement.Move(streetsToMove, _currentPlayer);
     }
@@ -44,18 +61,33 @@ public class MainGame : MonoBehaviour
         if (_isMoving)
             return;
         _isMoving = true;
-        _currentPlayerIndex++;
-        _currentPlayer = _players[_currentPlayerIndex % _playerCount];
 
         _playerMovement.DebugMove(_streets[_debugStreetIndex], _currentPlayer);
     }
     #endregion
-   
-    public void EndMove() => _isMoving = false;
 
-    private List<Street> AddStreets(int nextStreetIndex)
+    public void EndMove()
     {
-        List<Street> streetsToMove = new List<Street>();
+        if (_canMove || _isMoving)
+        {
+            Debug.LogAssertion("Move once more time");
+            return;
+        }
+
+        NextPlayer();
+
+        _isMoving = false;
+        _canMove = true;
+    }
+    private void NextPlayer()
+    {
+        _currentPlayerMoveIndex = 0;
+        _currentPlayerIndex++;
+        _currentPlayer = _players[_currentPlayerIndex % _playerCount];
+    }
+    private List<Street> GetStreetsToMove(int nextStreetIndex)
+    {
+        List<Street> streetsToMove = new();
         if(_currentPlayer.CurrentStreetIndex < nextStreetIndex)
         {
             for (int i = _currentPlayer.CurrentStreetIndex; i < nextStreetIndex + 1; i++)

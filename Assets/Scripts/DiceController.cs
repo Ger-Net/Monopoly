@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,18 @@ using UnityEngine;
 public class DiceController : MonoBehaviour
 {
     [SerializeField] private Dice[] _dices;
-
+    private int _firstDice;
+    private int _secondDice;
     public int Roll()
     {
-        int number = 0;
-        foreach (var dice in _dices)
-        {
-            number += dice.Roll();
-        }
-        return number;
+        _firstDice = _dices[0].Roll();
+        _secondDice = _dices[1].Roll();
+
+        return _firstDice + _secondDice;
+    }
+
+    public bool HasDouble()
+    {
+        return _firstDice == _secondDice;
     }
 }

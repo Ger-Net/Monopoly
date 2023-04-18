@@ -8,9 +8,7 @@ namespace Assets.Scrits.Behaviours.Buy
 {
     public class SimpleBoughtBehaviour : IBought
     {
-        public event Action OnBuyAccepted;
-
-        private SimpleStreet _street;
+        private readonly SimpleStreet _street;
         private Player _player;
         public SimpleBoughtBehaviour(SimpleStreet street)
         {

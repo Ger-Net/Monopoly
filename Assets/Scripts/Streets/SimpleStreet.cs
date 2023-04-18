@@ -8,7 +8,7 @@ namespace Assets.Scrits.Streets
     public class SimpleStreet : Street
     {
         [SerializeField] protected uint _cost = 50;
-        [SerializeField] private uint _rent;
+        [SerializeField] private uint _rent = 30;
         //serializable only for debug
         [SerializeField] private Player _owner;
         public Player Owner => _owner;

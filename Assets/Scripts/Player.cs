@@ -1,5 +1,6 @@
 using Assets.Scrits.Streets;
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +9,14 @@ public class Player : MonoBehaviour
     //serializable only for debug
     [SerializeField] private List<SimpleStreet> _streets = new List<SimpleStreet>();
 
-    [SerializeField] private int _money;
-    
     //serializable only for debug
     [SerializeField] private int _currentStreetIndex;
-    
+    [SerializeField] private int _money;
+
+    private int _blockTurnCount = 0;
+
+    public bool Blocked { get; private set; } = false;
+
     public int Money => _money;
     public int CurrentStreetIndex
     {
@@ -20,6 +24,7 @@ public class Player : MonoBehaviour
         set => _currentStreetIndex = value;
     }
 
+    #region Money
     public void AddMoney(uint money)
     {
         _money += (int)money;
@@ -33,7 +38,9 @@ public class Player : MonoBehaviour
         }
         _money -= money;
     }
+    #endregion
 
+    #region Streets 
     /// <summary>
     ///     When using this method don't use RemoveMoney
     /// </summary>
@@ -46,6 +53,14 @@ public class Player : MonoBehaviour
     public void RemoveStreet(SimpleStreet street)
     {
         _streets.Remove(street);
+    }
+
+    #endregion
+    
+    public void Block()
+    {
+        _blockTurnCount++;
+        Blocked = _blockTurnCount % 3 != 0;
     }
 }
 public enum PlayerColor
