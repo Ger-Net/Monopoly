@@ -16,8 +16,8 @@ namespace Assets.Scrits.Behaviours.Act
                 return;
             Debug.Log($"{player.name} is pay rent to {_street.Owner.name}");
 
-            _street.Owner.AddMoney(_street.Rent);
-            player.RemoveMoney((int)_street.Rent);
+            _street.Owner.AddMoney(_street.GetRent());
+            player.RemoveMoney((int)_street.GetRent());
         }
     }
 }

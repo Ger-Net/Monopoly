@@ -68,7 +68,7 @@ public class MainGame : MonoBehaviour
 
     public void EndMove()
     {
-        if (_canMove || _isMoving)
+        if (_canMove)
         {
             Debug.LogAssertion("Move once more time");
             return;

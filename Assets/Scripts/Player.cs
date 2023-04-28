@@ -13,10 +13,13 @@ public class Player : MonoBehaviour
     [SerializeField] private int _currentStreetIndex;
     [SerializeField] private int _money;
 
+    [SerializeField] private PlayerColor _color;
+
     private int _blockTurnCount = 0;
 
     public bool Blocked { get; private set; } = false;
 
+    public PlayerColor Color => _color;
     public int Money => _money;
     public int CurrentStreetIndex
     {
@@ -65,5 +68,5 @@ public class Player : MonoBehaviour
 }
 public enum PlayerColor
 {
-    Black, Green, Blue, Red
+    None, Black, Green, Blue, Red
 }
