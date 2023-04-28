@@ -9,6 +9,16 @@ namespace Assets.Scripts
     {
         [SerializeField] private StreetsStackConfig _config;
 
+        private void Awake()
+        {
+            foreach (var streetStack in _config.streetStacks)
+            {
+                streetStack.Init();
+                Debug.Log($"Current streetStack {streetStack.color}");
+                Debug.Log($"Current streets: {streetStack._streets.Count}");
+            }
+        }
+
         public void AddStreet(SimpleStreet simpleStreet)
         {
             _config.streetStacks.Where(t=> t.color == simpleStreet.Color).First().AddStreet(simpleStreet);

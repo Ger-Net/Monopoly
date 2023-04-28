@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scrits.Streets
 {
@@ -12,13 +13,18 @@ namespace Assets.Scrits.Streets
         public int count;
         public StreetColor color;
 
-        private List<SimpleStreet> _streets = new();
+        public List<SimpleStreet> _streets;
         private bool _checked = false;
         
-
+        public void Init()
+        {
+            _streets = new();
+            _checked = false;
+        }
         public void AddStreet(SimpleStreet street)
         {
             _streets.Add(street);
+            Debug.Log($"Adding street...\nCurrent streets: {_streets.Count}");
             Subscribe(street);
             Check();
         }
@@ -29,22 +35,30 @@ namespace Assets.Scrits.Streets
         }
         public void Check()
         {
-            if (_streets.Count == count && _checked == false)
+            if (_streets.Count != count || _checked != false)
             {
-                Player baseOwner = _streets[0].Owner;
-                foreach (var street in _streets)
-                {
-                    if (street.Owner != baseOwner)
-                        return;
-                }
-                foreach (var street in _streets)
-                {
-                    Unsubscribe(street);   
-                }
-                StackCompleted?.Invoke(this);
-                _checked = true;
-                
+                Debug.LogAssertion($"Dont Check {_streets.Count != count} {_checked != false}");
+                return;
             }
+            Player baseOwner = _streets[0].Owner;
+            foreach (var street in _streets)
+            {
+                if (street.Owner != baseOwner)
+                {
+                    Debug.LogAssertion("Dont Check Owner");
+                    return;
+                }
+
+            }
+
+            Debug.Log("Invoke");
+
+            StackCompleted?.Invoke(this);
+            foreach (var street in _streets)
+            {
+                Unsubscribe(street);
+            }
+            _checked = true;
         }
         private void Subscribe(SimpleStreet street)
         {

@@ -14,7 +14,7 @@ namespace Assets.Scrits.Behaviours.Act
         {
             if (_street.Owner == null || _street.Owner == player)
                 return;
-            Debug.Log($"{player.name} is pay rent to {_street.Owner.name}");
+            Debug.Log($"{player.name} is pay rent {_street.GetRent()} to {_street.Owner.name}");
 
             _street.Owner.AddMoney(_street.GetRent());
             player.RemoveMoney((int)_street.GetRent());
