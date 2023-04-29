@@ -12,4 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6fb505b0d8ee540aca01f78b887b1c, type: 3}
   m_Name: StackConfig
   m_EditorClassIdentifier: 
-  streetStacks: []
+  streetStacks:
+  - multiply: 2
+    count: 2
+    color: 0
+    _streets: []
+  - multiply: 3
+    count: 2
+    color: 1
+    _streets:
+    - {fileID: 0}
+    - {fileID: 0}
+  - multiply: 4
+    count: 2
+    color: 2
+    _streets:
+    - {fileID: 0}
+  - multiply: 4
+    count: 2
+    color: 3
+    _streets:
+    - {fileID: 0}
+  - multiply: 4
+    count: 2
+    color: 4
+    _streets:
+    - {fileID: 0}
+  - multiply: 5
+    count: 2
+    color: 5
+    _streets: []
+  - multiply: 6
+    count: 2
+    color: 6
+    _streets: []
+  - multiply: 7
+    count: 2
+    color: 7
+    _streets:
+    - {fileID: 0}

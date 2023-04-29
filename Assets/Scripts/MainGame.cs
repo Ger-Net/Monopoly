@@ -14,7 +14,8 @@ public class MainGame : MonoBehaviour
     [SerializeField] private Street[] _streets;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private DiceController _diceController;
-
+    //debug
+    [SerializeField]
     private Player _currentPlayer;
     private int _currentPlayerIndex = -1;
     private int _currentPlayerMoveIndex;
@@ -28,16 +29,9 @@ public class MainGame : MonoBehaviour
     }
     public void StartTurn()
     {
-        if (_isMoving && !_canMove)
+        if (_isMoving && !_canMove || _currentPlayer.Blocked)
         {
             Debug.LogAssertion("Can't move");
-            return;
-        }
-
-        if (_currentPlayer.Blocked)
-        {
-            _currentPlayer.Block();
-            EndMove();
             return;
         }
 
@@ -68,12 +62,16 @@ public class MainGame : MonoBehaviour
 
     public void EndMove()
     {
-        if (_canMove)
+        
+        if (_canMove && _currentPlayer.Blocked == false)
         {
             Debug.LogAssertion("Move once more time");
             return;
         }
-
+        if (_currentPlayer.Blocked)
+        {
+            _currentPlayer.Block();
+        }
         NextPlayer();
 
         _isMoving = false;

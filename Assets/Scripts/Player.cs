@@ -16,8 +16,9 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerColor _color;
 
     private int _blockTurnCount = 0;
-
-    public bool Blocked { get; private set; } = false;
+    //only debug
+    [SerializeField] private bool _blocked = false;
+    public bool Blocked => _blocked;
 
     public PlayerColor Color => _color;
     public int Money => _money;
@@ -63,7 +64,9 @@ public class Player : MonoBehaviour
     public void Block()
     {
         _blockTurnCount++;
-        Blocked = _blockTurnCount % 3 != 0;
+        _blocked = true;
+        if (_blockTurnCount == 3)
+            _blocked = false;
     }
 }
 public enum PlayerColor

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Singleton;
+using UnityEngine;
 
 namespace Assets.Scrits.Behaviours.Act
 {
@@ -11,7 +12,8 @@ namespace Assets.Scrits.Behaviours.Act
         }
         public void Act(Player player)
         {
-            Singleton<PlayerMovement>.Instance.Move(new() { _jail }, player);
+            Debug.Log("Moving");
+            Singleton<PlayerMovement>.Instance.Move(new() {null, _jail }, player);
             player.Block();
         }
     }

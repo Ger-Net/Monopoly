@@ -14,8 +14,6 @@ namespace Assets.Scripts
             foreach (var streetStack in _config.streetStacks)
             {
                 streetStack.Init();
-                Debug.Log($"Current streetStack {streetStack.color}");
-                Debug.Log($"Current streets: {streetStack._streets.Count}");
             }
         }
 

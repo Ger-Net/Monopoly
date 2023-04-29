@@ -13,7 +13,7 @@ namespace Assets.Scrits.Streets
         public int count;
         public StreetColor color;
 
-        public List<SimpleStreet> _streets;
+        private List<SimpleStreet> _streets;
         private bool _checked = false;
         
         public void Init()
