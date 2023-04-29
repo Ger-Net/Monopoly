@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     {
         _blockTurnCount++;
         _blocked = true;
-        if (_blockTurnCount == 3)
+        if (_blockTurnCount == 4)
             _blocked = false;
     }
 }
