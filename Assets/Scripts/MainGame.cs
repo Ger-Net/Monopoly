@@ -21,6 +21,9 @@ public class MainGame : MonoBehaviour
     private int _currentPlayerMoveIndex;
     private bool _canMove = true;
     private bool _isMoving = false;
+
+    public Player CurrentPlayer => _currentPlayer;
+    public bool CanMove => _canMove;    
     private void Awake()
     {
         //_playerMovement.OnMoveEnded += EndMove;
