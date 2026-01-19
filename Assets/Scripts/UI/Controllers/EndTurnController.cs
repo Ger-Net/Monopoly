@@ -27,5 +27,9 @@ namespace Assets.Scripts.UI.Controllers
             if(Singleton.Singleton<MainGame>.Instance.CanMove && Singleton.Singleton<MainGame>.Instance.CurrentPlayer.Blocked == false)
             StartCoroutine(_view.ShowPlayer(_duration));
         }
+        private void OnDestroy()
+        {
+            _view.Button.onClick.RemoveAllListeners();
+        }
     }
 }
